@@ -42,12 +42,13 @@ class MLP:
         for w,b in zip(self.W, self.b):
             net = np.dot(self.s[-1],w) + b
             self.s.append(self.sigm(net))
-        return self.s[-1]
+        return np.argmax(self.s[-1]) # return the index of the most active output neuron
     
     def fast_forward (self, x): # fast forward (optimized in time, but not use to train!)
         for i in range(len(self.b)):
             net = np.dot(x,self.W[i]) + self.b[i]
-        return net
+            x = self.sigm(net)
+        return np.argmax(x) # return the index of the most active output neuron
     
     def print (self, v, msg=''):
         if self.trace:
@@ -55,7 +56,7 @@ class MLP:
             print(v)
     
     def update (self, x, d, alpha): # do a learning step
-        self.forward(x) # propagate\
+        self.forward(x) # propagate
         
         self.incW = [] # saved in attributes for possible batch updates
         self.incb = []
