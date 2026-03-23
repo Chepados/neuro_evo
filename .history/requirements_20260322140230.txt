@@ -1,0 +1,6 @@
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+torch
+swig
+gymnasium
+gymnasium[box2d]

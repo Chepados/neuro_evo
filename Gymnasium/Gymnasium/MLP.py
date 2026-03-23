@@ -47,8 +47,7 @@ class MLP:
     def fast_forward (self, x): # fast forward (optimized in time, but not use to train!)
         for i in range(len(self.b)):
             net = np.dot(x,self.W[i]) + self.b[i]
-            x = self.sigm(net)
-        return x
+        return net
     
     def print (self, v, msg=''):
         if self.trace:
@@ -56,7 +55,7 @@ class MLP:
             print(v)
     
     def update (self, x, d, alpha): # do a learning step
-        self.forward(x) # propagate
+        self.forward(x) # propagate\
         
         self.incW = [] # saved in attributes for possible batch updates
         self.incb = []

@@ -1,0 +1,35 @@
+%%HTML
+<center>
+    <video id="playlistVideo" 
+           style="width: 400px; border-radius: 10px; border: 5px solid white;" 
+           autoplay muted controls>
+        <source src="media/rules_gameplay/rl-video-episode-0.mp4" type="video/mp4">
+        Tu navegador no soporta videos.
+    </video>
+</center>
+
+<script>
+    // 1. Definimos la lista de tus videos
+    const videoSources = [
+        "media/rules_gameplay/rl-video-episode-4.mp4",
+        "media/rules_gameplay/rl-video-episode-5.mp4",
+        "media/rules_gameplay/rl-video-episode-8.mp4",
+        "media/rules_gameplay/rl-video-episode-9.mp4",
+    ];
+    let currentIndex = 0;
+    const videoElement = document.getElementById('playlistVideo');
+
+    // 2. Escuchamos el evento 'ended' (cuando termina el video)
+    videoElement.addEventListener('ended', function() {
+        currentIndex++;
+        
+        // Si llegamos al final, volvemos al primero (opcional)
+        if (currentIndex >= videoSources.length) {
+            currentIndex = 0;
+        }
+        
+        // 3. Cambiamos la fuente y cargamos el nuevo video
+        videoElement.src = videoSources[currentIndex];
+        videoElement.play();
+    });
+</script>

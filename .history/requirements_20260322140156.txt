@@ -1,0 +1,4 @@
+torch
+swig
+gymnasium
+gymnasium[box2d]
